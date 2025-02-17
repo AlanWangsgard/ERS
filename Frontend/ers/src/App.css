@@ -1,0 +1,57 @@
+body{
+  margin: 0;
+}
+
+.loginDiv{
+  text-align: center;
+  background-color: slategray;
+  width: 200px;
+  margin: auto;
+  box-shadow: 0 0 10px black;
+  padding: 15px;
+  position: relative;
+  top: 35%;
+}
+ 
+
+.loginDiv input, .registerDiv input{
+  margin: 5px;
+}
+
+.loginDivButton{
+  width: 80px;
+  background-color: crimson;
+  border: 2px solid crimson;
+  padding: 10px;
+}
+
+.loginDivButton:hover{
+  border: 2px solid black;
+}
+
+.loginBackground{
+  height: 100vh;
+  background-image: url("./assets/road.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.registerBackground{
+  height: 100vh;
+  background-image: url("./assets/mountain.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.registerDiv{
+  text-align: center;
+  background-color: slategray;
+  width: 200px;
+  margin: auto;
+  box-shadow: 0 0 10px black;
+  padding: 15px;
+  position: relative;
+  top: 35%;
+}
