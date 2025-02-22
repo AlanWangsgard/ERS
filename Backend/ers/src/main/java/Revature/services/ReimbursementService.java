@@ -3,12 +3,16 @@ package Revature.services;
 import Revature.DAOs.ReimbursementDAO;
 import Revature.DAOs.UserDAO;
 import Revature.models.DTOs.IncomingReimbursementDTO;
+import Revature.models.DTOs.IncomingUserDTO;
+import Revature.models.DTOs.OutgoingUserDTO;
 import Revature.models.DTOs.UpdateReimbursementDTO;
 import Revature.models.Reimbursement;
 import Revature.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,6 +61,68 @@ public class ReimbursementService {
         return null;
 
     }
+
+    public List<Reimbursement> getReimbByUserId(IncomingUserDTO user){
+
+            List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(user.getUserId());
+
+            List<Reimbursement> reimb = new ArrayList<>();
+
+
+            reimb.addAll(returnedReimb);
+
+            return reimb;
+        }
+    public List<Reimbursement> getReimbByUserIdAndStatus(IncomingUserDTO user){
+
+        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserIdAndStatus(user.getUserId(), "pending");
+
+        List<Reimbursement> reimb = new ArrayList<>();
+
+
+        reimb.addAll(returnedReimb);
+
+        return reimb;
     }
+    public List<Reimbursement> getReimbByStatus(){
+
+        List<Reimbursement> returnedReimb = reimbDAO.findByStatus("pending");
+
+        List<Reimbursement> reimb = new ArrayList<>();
+
+
+        reimb.addAll(returnedReimb);
+
+        return reimb;
+    }
+
+    public List<Reimbursement> getAllReimbursements(){
+
+        List<Reimbursement> returnedReimb = reimbDAO.findAll();
+
+        List<Reimbursement> reimb = new ArrayList<>();
+
+
+        reimb.addAll(returnedReimb);
+
+        return reimb;
+    }
+
+    public String deleteReimbursementsAndUserByUserId(IncomingUserDTO user){
+        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(user.getUserId());
+
+        reimbDAO.deleteAll(returnedReimb);
+        userDAO.deleteById(user.getUserId());
+
+        List<Reimbursement> reimbCheck = reimbDAO.findByUser_UserId(user.getUserId());
+        Optional<User> userCheck = userDAO.findById(user.getUserId());
+        if (userCheck.isEmpty() && reimbCheck.isEmpty()){
+            return "User and Reimbursements Deleted";
+        }else{
+            return "Error";
+        }
+    }
+    }
+
 
 
