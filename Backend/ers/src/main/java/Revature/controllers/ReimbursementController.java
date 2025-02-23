@@ -6,6 +6,7 @@ import Revature.models.DTOs.IncomingUserDTO;
 import Revature.models.DTOs.UpdateReimbursementDTO;
 import Revature.models.Reimbursement;
 import Revature.services.ReimbursementService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reimbursement")
-@CrossOrigin
+@CrossOrigin(value = "http://localhost:5173", allowCredentials = "true")
 public class ReimbursementController {
 
     private final ReimbursementService reimbService;
@@ -34,8 +35,8 @@ public class ReimbursementController {
         return  ResponseEntity.accepted().body(reimbService.updateReimbursement(updateReimbDTO));
     }
 
-    @GetMapping
-    public ResponseEntity<List<Reimbursement>> getReimbursementByuserId(@RequestBody IncomingUserDTO user){
+    @PostMapping("/Id")
+    public ResponseEntity<List<Reimbursement>> getReimbursementByuserId(@RequestBody IncomingUserDTO user, HttpSession session){
         return ResponseEntity.ok(reimbService.getReimbByUserId(user));
     }
 

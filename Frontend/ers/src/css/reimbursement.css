@@ -1,0 +1,27 @@
+.reimbursement{
+    text-align: justify;
+    background-color: aqua;
+    border: 1px solid black;
+    max-width: 300px;
+    grid-column: 1;
+
+}
+
+.reimbText{
+    margin-left: 20px;
+}
+
+.reimbContain{
+    height: 100vh;
+    overflow: scroll;
+}
+
+.fullView{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 300px auto;
+}
