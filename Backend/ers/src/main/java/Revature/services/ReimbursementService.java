@@ -62,9 +62,9 @@ public class ReimbursementService {
 
     }
 
-    public List<Reimbursement> getReimbByUserId(IncomingUserDTO user){
+    public List<Reimbursement> getReimbByUserId(int userId){
 
-            List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(user.getUserId());
+            List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(userId);
 
             List<Reimbursement> reimb = new ArrayList<>();
 
@@ -73,9 +73,9 @@ public class ReimbursementService {
 
             return reimb;
         }
-    public List<Reimbursement> getReimbByUserIdAndStatus(IncomingUserDTO user){
+    public List<Reimbursement> getReimbByUserIdAndStatus(int userId){
 
-        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserIdAndStatus(user.getUserId(), "pending");
+        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserIdAndStatus(userId, "pending");
 
         List<Reimbursement> reimb = new ArrayList<>();
 

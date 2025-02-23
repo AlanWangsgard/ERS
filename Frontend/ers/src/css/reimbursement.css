@@ -7,13 +7,19 @@
 
 }
 
+.reimbursement:hover{
+    background-color: black;
+    color: white;
+}
+
 .reimbText{
     margin-left: 20px;
 }
 
 .reimbContain{
     height: 100vh;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .fullView{

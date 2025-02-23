@@ -1,6 +1,8 @@
 import Login from './Pages/Login'
 import Register from './Pages/Register'
-import ReimbursementView from './Pages/ReimbursementView'
+import ReinbursementViewer from './Pages/ReimbursementViewer'
+import CreateReimbursement from './Pages/CreateReimbursement'
+import AdminUserView from './Pages/AdminUserView'
 import Dashboard from './Pages/Dashboard'
 import { BrowserRouter, Route, Routes } from 'react-router'
 
@@ -11,8 +13,10 @@ function App() {
                 <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/reimbursement" element={<ReimbursementView/>} />
+                <Route path="/reimbursement" element={<ReinbursementViewer/>} />
                 <Route path="/dashboard" element={<Dashboard/>}/>
+                <Route path="/create" element={<CreateReimbursement/>}/>
+                <Route path='/admin' element={<AdminUserView/>}/>
                 </Routes>
             </BrowserRouter>
         </>

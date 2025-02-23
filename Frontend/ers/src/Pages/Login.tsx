@@ -3,11 +3,11 @@ import "../App.css"
 import axios from "axios";
 import { useState } from "react"
 import { Link } from "react-router";
-// import { useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 import { store } from "../GlobalData/store"
 function Login(){
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const[loginCreds, setLoginCreds] = useState({
         username:"",
@@ -34,13 +34,7 @@ function Login(){
 
             sessionStorage.setItem('user', JSON.stringify(response.data))
 
-            alert(store.loggedInUser.username + " has logged in! Welcome.")
-
-            if(store.loggedInUser.role === "admin"){
-                alert(`admin ${store.loggedInUser.username}`)
-            } else {
-                alert("not admin")
-            }
+            navigate("/dashboard")
 
         } catch {
             alert("Login unsuccessful")

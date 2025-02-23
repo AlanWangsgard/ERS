@@ -26,7 +26,7 @@ public class ReimbursementController {
     }
 
     @PostMapping
-    public ResponseEntity<Reimbursement> insertReimbursement(@RequestBody IncomingReimbursementDTO reimbDTO){
+    public ResponseEntity<Reimbursement> insertReimbursement(@RequestBody IncomingReimbursementDTO reimbDTO, HttpSession session){
         return ResponseEntity.accepted().body(reimbService.insertReimbursement(reimbDTO));
     }
 
@@ -35,14 +35,14 @@ public class ReimbursementController {
         return  ResponseEntity.accepted().body(reimbService.updateReimbursement(updateReimbDTO));
     }
 
-    @PostMapping("/Id")
-    public ResponseEntity<List<Reimbursement>> getReimbursementByuserId(@RequestBody IncomingUserDTO user, HttpSession session){
-        return ResponseEntity.ok(reimbService.getReimbByUserId(user));
+    @GetMapping("/Id/{userId}")
+    public ResponseEntity<List<Reimbursement>> getReimbursementByuserId(@PathVariable int userId, HttpSession session){
+        return ResponseEntity.ok(reimbService.getReimbByUserId(userId));
     }
 
-    @GetMapping("/pending")
-    public ResponseEntity<List<Reimbursement>> getPendingReimbursementByuserId(@RequestBody IncomingUserDTO user) {
-        return ResponseEntity.ok(reimbService.getReimbByUserIdAndStatus(user));
+    @GetMapping("/pending/{userId}")
+    public ResponseEntity<List<Reimbursement>> getPendingReimbursementByuserId(@PathVariable int userId, HttpSession session) {
+        return ResponseEntity.ok(reimbService.getReimbByUserIdAndStatus(userId));
     }
 
     @GetMapping("/pending/all")
