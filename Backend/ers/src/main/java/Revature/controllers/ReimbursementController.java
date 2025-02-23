@@ -57,9 +57,9 @@ public class ReimbursementController {
         return ResponseEntity.ok(reimbService.getAllReimbursements());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{userId}")
     @AdminOnly
-    public String deleteReimbursementsByUserId(@RequestBody IncomingUserDTO user){
-        return reimbService.deleteReimbursementsAndUserByUserId(user);
+    public String deleteReimbursementsByUserId(@PathVariable int userId){
+        return reimbService.deleteReimbursementsAndUserByUserId(userId);
     }
 }

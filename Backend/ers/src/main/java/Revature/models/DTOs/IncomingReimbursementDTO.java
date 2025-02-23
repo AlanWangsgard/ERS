@@ -5,15 +5,17 @@ public class IncomingReimbursementDTO {
     private String description;
     private float amount;
     private int userId;
+    private String status;
 
     public IncomingReimbursementDTO(){
 
     }
 
-    public IncomingReimbursementDTO(String description, float amount, int userId) {
+    public IncomingReimbursementDTO(String description, float amount, int userId, String status) {
         this.description = description;
         this.amount = amount;
         this.userId = userId;
+        this.status = status;
     }
 
     public String getDescription() {
@@ -40,12 +42,21 @@ public class IncomingReimbursementDTO {
         this.userId = userId;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "IncomingReimbursementDTO{" +
                 "description='" + description + '\'' +
                 ", amount=" + amount +
                 ", userId=" + userId +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

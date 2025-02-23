@@ -1,5 +1,5 @@
 import axios from "axios"
-import Nav from "./nav"
+import Nav from "./Nav"
 import "../css/reimbursement.css"
 import ReimbFullView from "./ReimbFullView"
 import { useEffect, useState } from "react"
@@ -10,6 +10,7 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
     const [reimbursements, setReimbursements] = useState([])
     const [fullDetails, setFullDetails] = useState<Reimbursement>()
     const [pending, setPending] = useState("false")
+    const [recorsChanged, setRecordsChanged] = useState(0)
     async function getReimbursements(){
         try{
 
@@ -53,7 +54,7 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
         getPendingReimbursements()
         }
 
-    }, [pending])
+    }, [pending, recorsChanged])
 
     return (<>
         <Nav />
@@ -66,13 +67,12 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
             {reimbursements.map((reimb:Reimbursement)=>
                 <div key={reimb.reimbId} className="reimbursement"  onClick={() => showFull(reimb.reimbId)}> 
                     <ReimbSideBar {...reimb}/>
-                    {/* <input type="button" value={"show more"} onClick={() => showFull(reimb.reimbId)}></input> */}
                 </div>
             )}
         </div>
         <div className="fullView">
         {fullDetails != null &&
-        <ReimbFullView {...fullDetails} />
+        <ReimbFullView count={recorsChanged} fun={setRecordsChanged}{...fullDetails} />
         }
         </div>
         </div>

@@ -15,11 +15,37 @@ function AdminUserView(){
         }
     }
 
+    async function promoteUser(UserId:number, role:string){
+        try{
+
+            const response = await axios.post("http://localhost:8080/users", {userId: UserId, role: role},{withCredentials:true} )
+            console.log(response.data)
+            getUsers()
+            
+
+        } catch {
+            alert("user not promoted")
+        }
+    }
+    async function deleteUser(UserId:number){
+        try{
+
+            const response = await axios.delete(`http://localhost:8080/reimbursement/${UserId}`,{withCredentials:true} )
+            console.log(response.data)
+            getUsers()
+            
+
+        } catch {
+            alert("user not fired")
+        }
+    }
+
     useEffect(()=>{
 
         getUsers()
     }, [])
     return(<>
+    <table>
         <thead>
                     <tr>
                         <th>User Id</th>
@@ -34,9 +60,15 @@ function AdminUserView(){
                     <td>{user.userId}</td>
                     <td>{user.username}</td>
                     <td>{user.role}</td>
+                    <td>
+                                <button onClick={() => promoteUser(user.userId, "admin")}>Promote</button>
+                                <button onClick={() => promoteUser(user.userId, "user")}>Demote</button>
+                                <button onClick={() => deleteUser(user.userId)}>Fire</button>
+                            </td>
                     </tr>
         ))}
         </tbody>
+        </table>
     </>)
 }
 

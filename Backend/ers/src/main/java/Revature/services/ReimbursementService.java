@@ -108,14 +108,14 @@ public class ReimbursementService {
         return reimb;
     }
 
-    public String deleteReimbursementsAndUserByUserId(IncomingUserDTO user){
-        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(user.getUserId());
+    public String deleteReimbursementsAndUserByUserId(int userId){
+        List<Reimbursement> returnedReimb = reimbDAO.findByUser_UserId(userId);
 
         reimbDAO.deleteAll(returnedReimb);
-        userDAO.deleteById(user.getUserId());
+        userDAO.deleteById(userId);
 
-        List<Reimbursement> reimbCheck = reimbDAO.findByUser_UserId(user.getUserId());
-        Optional<User> userCheck = userDAO.findById(user.getUserId());
+        List<Reimbursement> reimbCheck = reimbDAO.findByUser_UserId(userId);
+        Optional<User> userCheck = userDAO.findById(userId);
         if (userCheck.isEmpty() && reimbCheck.isEmpty()){
             return "User and Reimbursements Deleted";
         }else{
