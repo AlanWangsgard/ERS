@@ -1,8 +1,10 @@
 import { useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router"
+import Nav from "../components/Nav"
 
 function Register(){
-    
+    const[message,setMsg] = useState("")
     const[registerInfo, setRegisterInfo] = useState({
         firstName:"",
         lastName:"",
@@ -10,7 +12,7 @@ function Register(){
         password:""
     }) 
 
-
+    const navigate = useNavigate()
     const storeValues = (event:React.ChangeEvent<HTMLInputElement>) => {
 
         const name = event.target.name 
@@ -22,18 +24,24 @@ function Register(){
     async function register(){
         try{
 
-            await axios.post("http://localhost:8080/auth/register", registerInfo, {withCredentials:true})
+            const response = await axios.post("http://localhost:8080/auth/register", registerInfo, {withCredentials:true})
+            console.log(response.data)
+            if(response.data.type == "error"){
+            setMsg(response.data.message)
+            }else if (response.data.type == "ok"){
+                navigate("/")
+            }
 
-            alert("account created")
-
-        } catch {
+        } catch (e){
             alert("account not created")
         }
     }
 
 
     return <>
+    <Nav/>
     <div className="registerBackground">
+    {message != "" && <p className="message">{message}</p>}
     <div className="registerDiv">
         <input type="text" name="firstName" placeholder="First Name" onChange={storeValues}></input>
         <input type="text" name="lastName" placeholder="Last Name" onChange={storeValues}></input>

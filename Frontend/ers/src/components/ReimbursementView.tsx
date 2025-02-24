@@ -58,12 +58,12 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
 
     return (<>
         <Nav />
-        <select name="status" onChange={e => setPending(e.target.value)}>
+           <div className="container">
+        <div className="reimbContain">
+        <select className="reimbSelect" name="status" onChange={e => setPending(e.target.value)}>
             <option value={"false"}>All Reimbursements</option>
             <option value={"true"}>Pending Reimbursements</option>
         </select>
-           <div className="container">
-        <div className="reimbContain">
             {reimbursements.map((reimb:Reimbursement)=>
                 <div key={reimb.reimbId} className="reimbursement"  onClick={() => showFull(reimb.reimbId)}> 
                     <ReimbSideBar {...reimb}/>

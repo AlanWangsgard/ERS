@@ -2,6 +2,7 @@ package Revature.controllers;
 
 import Revature.models.DTOs.LoginDTO;
 import Revature.models.DTOs.OutgoingUserDTO;
+import Revature.models.RequestResponse;
 import Revature.models.User;
 import Revature.services.AuthService;
 import jakarta.servlet.http.HttpSession;
@@ -22,9 +23,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<OutgoingUserDTO> registerUser(@RequestBody User user){
+    public ResponseEntity<RequestResponse> registerUser(@RequestBody User user){
 
-        OutgoingUserDTO returnedUser = authService.registerUser(user);
+        RequestResponse returnedUser = authService.registerUser(user);
 
         return ResponseEntity.ok(returnedUser);
 

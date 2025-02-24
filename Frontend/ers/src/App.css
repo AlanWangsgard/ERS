@@ -55,3 +55,14 @@ body{
   position: relative;
   top: 35%;
 }
+
+.message{
+  margin: 0;
+  background-color: crimson;
+  text-align: center;
+  margin: auto;
+  max-width: 400px;
+  padding: 5px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -13,6 +13,7 @@ function Login(){
         username:"",
         password:""
     }) 
+    const [message, setMsg] = useState('')
 
 
     const storeValues = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -37,12 +38,13 @@ function Login(){
             navigate("/dashboard")
 
         } catch {
-            alert("Login unsuccessful")
+            setMsg("incorrect username or password")
         }
     }
 
     return <>
     <div className="loginBackground">
+        {message != "" && <p className="message">{message}</p>}
         <div className="loginDiv">
             <h2>Login</h2>
             <input placeholder="Username" name="username" type="text" onChange={storeValues}></input>
@@ -50,10 +52,8 @@ function Login(){
             <input placeholder="Password" name="password" type="password" onChange={storeValues}></input>
             <br></br>
             <input className="loginDivButton" type="button" value={"Log In"} onClick={login}></input>
-            {/* <input className="loginDivButton" type="button" value={"Register"}><Link to="./"></Link></input> */}
             <Link className="loginDivButton" to="/register">Register</Link>
         </div>
-        {/* <img src={background}></img> */}
     </div>
     </>
 }

@@ -1,5 +1,6 @@
 import axios from "axios"
-import Nav from "../components/nav"
+import "../css/createReimb.css"
+import Nav from "../components/Nav"
 import React, { useState } from "react"
 import getUser from "../util/common"
 function CreateReimbursement(){
@@ -25,11 +26,18 @@ function CreateReimbursement(){
         alert("unsuccessful")
     }
 }
-    return(<>
+    return(<div className="createRoot">
     <Nav/>
+    <div className="createR">
+        <h2>Create Reimbursement</h2>
+        <label htmlFor="amount">Reimbursement Amount</label><br></br>
         <input name="amount" onChange={storeAmount} type="number"></input>
+        <br></br>
+        <label htmlFor="description">Reimbursement Description</label><br></br>
         <textarea name="description" maxLength={255} rows={3} onChange={handleChange}></textarea>
+        <br></br>
         <button onClick={createReimb}>Create</button>
-    </>)
+        </div>
+    </div>)
 }
 export default CreateReimbursement

@@ -3,8 +3,10 @@ package Revature.services;
 import Revature.DAOs.UserDAO;
 import Revature.models.DTOs.LoginDTO;
 import Revature.models.DTOs.OutgoingUserDTO;
+import Revature.models.RequestResponse;
 import Revature.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,19 +19,22 @@ public class AuthService {
         this.userDAO = userDAO;
     }
 
-    public OutgoingUserDTO registerUser(User user){
+    public RequestResponse registerUser(User user){
 
+        if(userDAO.findByUsername(user.getUsername()).isPresent()){
+            return new RequestResponse("User Already exists", "error");
+        }else {
 
-        User returnedUser = userDAO.save(user);
+            User returnedUser = userDAO.save(user);
 
-        OutgoingUserDTO outUserDTO = new OutgoingUserDTO(
-                returnedUser.getUserId(),
-                returnedUser.getUsername(),
-                returnedUser.getRole()
-        );
+            OutgoingUserDTO outUserDTO = new OutgoingUserDTO(
+                    returnedUser.getUserId(),
+                    returnedUser.getUsername(),
+                    returnedUser.getRole()
+            );
 
-        return outUserDTO;
-
+            return new RequestResponse(outUserDTO.toString(), "ok");
+        }
     }
 
     public OutgoingUserDTO login(LoginDTO loginDTO){
@@ -43,7 +48,6 @@ public class AuthService {
             throw new IllegalArgumentException("Password cannot be empty!");
         }
 
-        //TODO: could do more checks, but this is the gist
 
         User returnedUser = userDAO.findByUsernameAndPassword(
                 loginDTO.getUsername(),

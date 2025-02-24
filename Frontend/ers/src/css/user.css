@@ -1,0 +1,69 @@
+.userRoot{
+    background-color: slategray;
+    height: 100vh;
+    background-image: url("../assets/blackback.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table{
+    background-color: gray;
+    margin: auto;
+    margin-top: 30vh;
+    box-shadow: 0 0 10px black;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+
+td, th{
+    padding: 5px;
+}
+
+th{
+    background-color: black;
+    color: white;
+}
+
+.promote{
+    background-color: green;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+}
+
+.promote:hover{
+    background-color: greenyellow;
+    color: white;
+}
+
+.demote{
+    background-color: gold;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+}
+
+.demote:hover{
+    background-color: yellow;
+    color: white;
+}
+
+.fire{
+    background-color: crimson;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+}
+
+.fire:hover{
+    background-color: red;
+    color: white;
+}
+
+.admin{
+    color: gold;
+    text-shadow: 0 0 5px gold;
+}

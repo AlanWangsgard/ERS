@@ -1,0 +1,39 @@
+.createR{
+    margin: auto;
+    text-align: center;
+    margin-top: 300px;
+    background-color: gray;
+    box-shadow: 0 0 10px black;
+    max-width: 400px;
+}
+
+.createR input{
+    width: 200px;
+    margin: 10px;
+}
+
+.createR textarea{
+    width: 300px;
+    margin: 10px;
+}
+
+
+.createRoot{
+    background-color: slategray;
+    height: 100vh;
+    background-image: url("../assets/blackback.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.createR button{
+    background-color: crimson;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+}
+
+.createR button:hover{
+    background-color: orangered;
+    color: white;
+}

@@ -1,0 +1,15 @@
+.navDiv{
+    background-color: black;
+    height: 5vh;
+}
+
+.navDiv a{
+    text-decoration: none;
+    line-height: 5vh;
+    color: white;
+    margin-left: 10px;
+}
+
+.navDiv a:hover{
+    color: red
+}

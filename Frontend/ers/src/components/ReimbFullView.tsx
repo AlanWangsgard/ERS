@@ -15,17 +15,17 @@ function ReimbFullView({amount, description, status, reimbId, fun, count}: Reimb
                 alert("ststus not changed")
             }
         }
-    return(<>
-        <h1>{amount}</h1>
-        <p>{description}</p>
-        <p>{status}</p>
+    return(<div className="expandedView">
+        <h1>Amount: ${amount}</h1>
+        <p>Description: {description}</p>
+        <p>Status: {status}</p>
         {user.role == "admin" &&
         <>
         <button onClick={() =>setStatus("Approved",reimbId)}>Approve</button>
         <button onClick={() =>setStatus("Rejected",reimbId)}>Reject</button>
         </>
         }
-    </>)
+    </div>)
 }
 
 export default ReimbFullView
