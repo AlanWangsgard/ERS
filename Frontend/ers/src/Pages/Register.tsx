@@ -21,11 +21,23 @@ function Register(){
         setRegisterInfo((registerInfo) => ({...registerInfo, [name]:value}))
 
     }
+    function checkFields(){
+        if(registerInfo.firstName == ""){
+            setMsg("Must Provide First Name")
+        }else if(registerInfo.lastName == ""){
+            setMsg("Must provide Last Name")
+        }else if(registerInfo.password == ""){
+            setMsg("Must provide Password")
+        }else if(registerInfo.username == ""){
+            setMsg("Must provide Password")
+        }else{
+            register()
+        }
+    }
     async function register(){
         try{
 
             const response = await axios.post("http://localhost:8080/auth/register", registerInfo, {withCredentials:true})
-            console.log(response.data)
             if(response.data.type == "error"){
             setMsg(response.data.message)
             }else if (response.data.type == "ok"){
@@ -43,11 +55,15 @@ function Register(){
     <div className="registerBackground">
     {message != "" && <p className="message">{message}</p>}
     <div className="registerDiv">
-        <input type="text" name="firstName" placeholder="First Name" onChange={storeValues}></input>
-        <input type="text" name="lastName" placeholder="Last Name" onChange={storeValues}></input>
-        <input type="text" name="username" placeholder="Username" onChange={storeValues}></input>
-        <input type="password" name="password" placeholder="Password" onChange={storeValues}></input>
-        <input className="loginDivButton" type="button" value={"Register"} onClick={register}></input>
+        <label htmlFor="firstName">First Name</label>
+        <input id="firstName" type="text" name="firstName" placeholder="First Name" onChange={storeValues}></input>
+        <label htmlFor="lastName">Last Name</label>
+        <input id="lastName"type="text" name="lastName" placeholder="Last Name" onChange={storeValues}></input>
+        <label htmlFor="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="Username" onChange={storeValues}></input>
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Password" onChange={storeValues}></input>
+        <input className="loginDivButton" type="button" value={"Register"} onClick={checkFields}></input>
     </div>
     </div>
     </>

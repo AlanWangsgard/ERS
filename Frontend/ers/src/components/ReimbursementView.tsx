@@ -15,7 +15,6 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
         try{
 
             const response = await axios.get(allUrl, {withCredentials:true} )
-            console.log(response.data)
             setReimbursements(response.data)
             
 
@@ -27,7 +26,6 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
         try{
 
             const response = await axios.get(pendingUrl, {withCredentials:true})
-            console.log(response.data)
             setReimbursements(response.data)
             
 
@@ -38,10 +36,7 @@ function ReimbursementView({ allUrl, pendingUrl}: {allUrl:string, pendingUrl:str
 
     function showFull(i:number){
          const data:Reimbursement = reimbursements.find(({ reimbId }) => reimbId === i)!
-         console.log(i)
-         console.log(data)
          setFullDetails(data)
-        console.log(fullDetails)
 
     }
     

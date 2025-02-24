@@ -19,10 +19,20 @@ body{
 }
 
 .loginDivButton{
-  width: 80px;
   background-color: crimson;
   border: 2px solid crimson;
   padding: 10px;
+  width: 80px;
+}
+
+.loginDiv a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.loginDivButtonDiv{
+  display: block;
 }
 
 .loginDivButton:hover{

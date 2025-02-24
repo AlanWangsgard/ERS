@@ -26,6 +26,9 @@
     grid-column: 2;
     grid-row: 1;
     background-color: gray;
+    background-image: url("../assets/blackback.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container{
@@ -42,7 +45,10 @@
     width: 400px;
     margin: auto;
     text-align: center;
-
+    background-color: gray;
+    box-shadow: 0 0 10px black;
+    margin-top: 100px;
+    padding: 10px;
 }
 
 .expandedView button{

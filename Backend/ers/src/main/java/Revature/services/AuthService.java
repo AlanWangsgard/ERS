@@ -5,9 +5,12 @@ import Revature.models.DTOs.LoginDTO;
 import Revature.models.DTOs.OutgoingUserDTO;
 import Revature.models.RequestResponse;
 import Revature.models.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class AuthService {
@@ -59,6 +62,13 @@ public class AuthService {
         }
 
         return new OutgoingUserDTO(returnedUser);
+    }
+
+    public void logOut(){
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attributes.getRequest().getSession(false);
+        System.out.println(session == null);
+        session.invalidate();
     }
 
 }

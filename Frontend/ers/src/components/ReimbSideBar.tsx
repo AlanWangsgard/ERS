@@ -1,6 +1,10 @@
 import { Reimbursement } from "../Interfaces/Reimbursement"
+import { useEffect } from "react"
 
 function ReimbSideBar({amount, description, status}: Reimbursement){
+    useEffect(()=>{
+            
+        }, [description])
     return (<>
             
                 <div className="reimbText">

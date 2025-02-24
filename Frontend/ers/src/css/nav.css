@@ -13,3 +13,14 @@
 .navDiv a:hover{
     color: red
 }
+
+.logoutButton{
+    border: none;
+    color: white;
+    background-color: black;
+
+}
+
+.logoutButton:hover{
+    color: red;
+}

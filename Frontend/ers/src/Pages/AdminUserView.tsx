@@ -3,13 +3,14 @@ import { User } from "../Interfaces/User"
 import { useEffect, useState } from "react"
 import Nav from "../components/Nav"
 import "../css/user.css"
+import getUser from "../util/common"
+import { useNavigate } from "react-router"
 function AdminUserView(){
     const [users, setUsers] = useState([])
     async function getUsers(){
         try{
 
             const response = await axios.get("http://localhost:8080/users", {withCredentials:true} )
-            console.log(response.data)
             setUsers(response.data)
 
         } catch {
@@ -20,8 +21,7 @@ function AdminUserView(){
     async function promoteUser(UserId:number, role:string){
         try{
 
-            const response = await axios.post("http://localhost:8080/users", {userId: UserId, role: role},{withCredentials:true} )
-            console.log(response.data)
+            await axios.post("http://localhost:8080/users", {userId: UserId, role: role},{withCredentials:true} )
             getUsers()
             
 
@@ -32,8 +32,7 @@ function AdminUserView(){
     async function deleteUser(UserId:number){
         try{
 
-            const response = await axios.delete(`http://localhost:8080/reimbursement/${UserId}`,{withCredentials:true} )
-            console.log(response.data)
+        await axios.delete(`http://localhost:8080/reimbursement/${UserId}`,{withCredentials:true} )
             getUsers()
             
 
@@ -41,9 +40,12 @@ function AdminUserView(){
             alert("user not fired")
         }
     }
-
+    const user = getUser()
+    const navigate = useNavigate()
     useEffect(()=>{
-
+        if(user == null){
+            navigate("/")
+        }
         getUsers()
     }, [])
     return(<div className="userRoot">

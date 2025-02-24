@@ -46,4 +46,9 @@ public class AuthController {
 
     }
 
+    @GetMapping("/logout")
+    public void logOut(HttpSession session){
+        session.invalidate();
+    }
+
 }

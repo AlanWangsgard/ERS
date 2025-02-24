@@ -2,7 +2,6 @@
 import "../App.css"
 import axios from "axios";
 import { useState } from "react"
-import { Link } from "react-router";
 import { useNavigate } from "react-router"
 import { store } from "../GlobalData/store"
 function Login(){
@@ -51,8 +50,10 @@ function Login(){
             <br></br>
             <input placeholder="Password" name="password" type="password" onChange={storeValues}></input>
             <br></br>
+            <div className="loginButtonDiv">
             <input className="loginDivButton" type="button" value={"Log In"} onClick={login}></input>
-            <Link className="loginDivButton" to="/register">Register</Link>
+            <input className="loginDivButton" type="button" value={"Register"} onClick={() => navigate('/register')}></input>
+            </div>
         </div>
     </div>
     </>
