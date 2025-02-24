@@ -1,6 +1,7 @@
 import { Reimbursement } from "../Interfaces/Reimbursement"
 import getUser from "../util/common"
 import axios from "axios"
+import Status from "./Status"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 function ReimbFullView({amount, description, status, reimbId, user, fun, count}: Reimbursement &{fun:Dispatch<SetStateAction<number>>, count:number}){
@@ -52,7 +53,7 @@ function ReimbFullView({amount, description, status, reimbId, user, fun, count}:
         <h1>Amount: ${amount}</h1>
         {editMode == 'false' ? <p>Description: {text}</p> : <><label htmlFor="description">Reimbursement Description</label><br></br>
         <textarea id="description" name="description" maxLength={255} rows={3} value={text} onChange={handleChange}></textarea></>}
-        <p>Status: {status}</p>
+        <p>Status: <Status s={status}/></p>
         {sesUser.role == "admin" &&
         <>
         <button onClick={() =>setStatus("Approved",reimbId)}>Approve</button>

@@ -34,6 +34,7 @@
 .container{
     display: grid;
     grid-template-columns: 300px auto;
+    background-color: gray;
 }
 
 .reimbSelect{
