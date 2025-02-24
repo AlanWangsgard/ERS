@@ -68,7 +68,7 @@ function AdminUserView(){
                     <td>
                                 <button className="promote" onClick={() => promoteUser(user.userId, "admin")}>Promote</button>
                                 <button className="demote" onClick={() => promoteUser(user.userId, "user")}>Demote</button>
-                                <button className="fire" onClick={() => deleteUser(user.userId)}>Fire</button>
+                                <button className="fire" onClick={() => deleteUser(user.userId)}>Dismiss</button>
                             </td>
                     </tr>
         ))}

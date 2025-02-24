@@ -8,11 +8,13 @@ function ReimbFullView({amount, description, status, reimbId, user, fun, count}:
     const sesUser = getUser()
     const[editMode, setEditMode] = useState('false')
     const[text, setText]= useState(description)
+    const[sts, setSts]= useState(status)
     const [message, setMessage] = useState('')
     useEffect(()=>{
         setEditMode("false")
         setText(description)
-    }, [description])
+        setSts(status)
+    }, [description, status])
     function checkFields(){
         if(text.length < 10){
             setMessage("Description must be at least 10 Characters")
@@ -27,6 +29,8 @@ function ReimbFullView({amount, description, status, reimbId, user, fun, count}:
     
                 await axios.put("http://localhost:8080/reimbursement", {description: description, status: status, reimbId: reimbId} ,{withCredentials:true})
                 fun(count+1)
+                setSts(status)
+
             } catch {
                 alert("ststus not changed")
             }
@@ -53,7 +57,7 @@ function ReimbFullView({amount, description, status, reimbId, user, fun, count}:
         <h1>Amount: ${amount}</h1>
         {editMode == 'false' ? <p>Description: {text}</p> : <><label htmlFor="description">Reimbursement Description</label><br></br>
         <textarea id="description" name="description" maxLength={255} rows={3} value={text} onChange={handleChange}></textarea></>}
-        <p>Status: <Status s={status}/></p>
+        <p>Status: <Status s={sts}/></p>
         {sesUser.role == "admin" &&
         <>
         <button onClick={() =>setStatus("Approved",reimbId)}>Approve</button>

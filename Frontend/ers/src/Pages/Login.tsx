@@ -40,6 +40,15 @@ function Login(){
             setMsg("incorrect username or password")
         }
     }
+    function checkFields(){
+        if(loginCreds.username == ""){
+            setMsg("Please enter a username")
+        }else if(loginCreds.password == ""){
+            setMsg("Plaese enter your Password")
+        }else{
+            login()
+        }
+    }
 
     return <>
     <div className="loginBackground">
@@ -51,7 +60,7 @@ function Login(){
             <input placeholder="Password" name="password" type="password" onChange={storeValues}></input>
             <br></br>
             <div className="loginButtonDiv">
-            <input className="loginDivButton" type="button" value={"Log In"} onClick={login}></input>
+            <input className="loginDivButton" type="button" value={"Log In"} onClick={checkFields}></input>
             <input className="loginDivButton" type="button" value={"Register"} onClick={() => navigate('/register')}></input>
             </div>
         </div>
